@@ -3,7 +3,7 @@
 #
 class gradle {
 
-  $version = 'gradle-1.0-rc-3'
+  $version = 'gradle-1.0'
 
   package{"unzip": ensure  => present }
 
