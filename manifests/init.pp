@@ -12,13 +12,13 @@ class gradle {
   }
 
   archive { $version:
-    ensure	=> present,
-    url 	=> "http://downloads.gradle.org/distributions/${version}-all.zip",
-    checksum	=> false,
-    src_target	=> '/tmp',
-    target	=> '/usr/share',
-    extension	=> 'zip',
-    require  => Package['unzip']
+    ensure     => present,
+    url        => "http://downloads.gradle.org/distributions/${version}-all.zip",
+    digest_string => "7697cb1e78c7e7362aa422d1790238bd",
+    src_target => '/opt',
+    target     => '/usr/share',
+    extension  => 'zip',
+    require    => Package['unzip'],
   }
 
   file { '/usr/share/gradle':
