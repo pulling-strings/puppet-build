@@ -31,7 +31,7 @@ class build::gradle {
   file { '/etc/profile.d/gradle.sh':
     ensure	=> file,
     mode	=> 644,
-    source	=> 'puppet:///modules/gradle/gradle.sh',
+    source	=> 'puppet:///modules/build/gradle.sh',
     owner	=> root, group	=> root,
   }
 
