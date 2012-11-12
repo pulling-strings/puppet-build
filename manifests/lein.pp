@@ -6,28 +6,29 @@
 # [Remember: No empty lines between comments and class definition]
 class build::lein {
 
- $lein_url = "https://raw.github.com/technomancy/leiningen/preview/bin/lein"
+  $lein_url = 'https://raw.github.com/technomancy/leiningen/preview/bin/lein'
 
- package{'openjdk-6-jdk':
-   ensure  => present 
- }
+  package{'openjdk-6-jdk':
+    ensure  => present
+  }
 
- file{"$home/bin":
-   ensure => directory,
-   owner  => $username,
-   group  => $username
- }
+  file{"${home}/bin":
+    ensure => directory,
+    owner  => $username,
+    group  => $username
+  }
 
- exec{'lein fetch':
-   command => "wget -P $home/bin $lein_url && chmod +x $home/bin/lein" ,
-   user    => $username,
-   path    => ['/usr/bin','/bin'],
-   require => [File["$home/bin"], Package['openjdk-6-jdk']]
- }
+  exec{'lein fetch':
+    command => "wget -P ${home}/bin ${lein_url} && chmod +x $home/bin/lein" ,
+    user    => $username,
+    path    => ['/usr/bin','/bin'],
+    require => [File["${home}/bin"], Package['openjdk-6-jdk']],
+    creates => "${home}/bin/lein"
+  }
 
- exec{"lein install":
-   command  => "/bin/su - $username $home/bin/lein",
-   require  => Exec['lein fetch']
- }
+  exec{'lein install':
+    command  => "/bin/su - ${username} ${home}/bin/lein",
+    require  => Exec['lein fetch']
+  }
 
 }
