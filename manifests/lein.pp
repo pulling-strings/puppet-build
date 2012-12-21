@@ -27,8 +27,9 @@ class build::lein {
   }
 
   exec{'lein install':
-    command  => "/bin/su - ${username} ${home}/bin/lein",
-    require  => Exec['lein fetch']
+    command => "/bin/su - ${username} ${home}/bin/lein",
+    require => Exec['lein fetch'],
+    unless  => "/usr/bin/test -d ${home}/.lein/self-installs"
   }
 
 }
