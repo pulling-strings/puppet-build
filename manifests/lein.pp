@@ -12,24 +12,16 @@ class build::lein {
     ensure  => present
   }
 
-  file{"${home}/bin":
-    ensure => directory,
-    owner  => $username,
-    group  => $username
-  }
+  apt::source { 'narkisr-debs':
+    location    => 'http://dl.bintray.com/content/narkisr/narkisr-debs',
+    repos       => '/',
+    release     => '',
+    include_src => false,
+  } ->
 
-  exec{'lein fetch':
-    command => "wget -P ${home}/bin ${lein_url} && chmod +x $home/bin/lein" ,
-    user    => $username,
-    path    => ['/usr/bin','/bin'],
-    require => [File["${home}/bin"], Package['openjdk-6-jdk']],
-    creates => "${home}/bin/lein"
-  }
-
-  exec{'lein install':
-    command => "/bin/su - ${username} ${home}/bin/lein",
-    require => Exec['lein fetch'],
-    unless  => "/usr/bin/test -d ${home}/.lein/self-installs"
+  package{ 'leiningen':
+    ensure   => installed,
+    require  => Class['jdk']
   }
 
 }
