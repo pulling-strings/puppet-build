@@ -8,5 +8,6 @@ description 'Sets up a list of build utilities (mainly for JVM based langs).'
 project_page 'https://github.com/narkisr/puppet-build'
 
 ## Add dependencies, if any:
-dependency 'narkisr/barbecue', '>= 0.1.0'
+# TODO barbecue should be upload to puppet forge
+# dependency 'narkisr/barbecue', '>= 0.1.0'
 # dependency 'camptocamp / puppet-archive', '>= 0.1.0'
