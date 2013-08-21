@@ -3,7 +3,7 @@
 #
 class build::gradle {
 
-  $version = 'gradle-1.2'
+  $version = 'gradle-1.7'
 
   package{'unzip': ensure  => present }
 
@@ -16,7 +16,7 @@ class build::gradle {
   archive { $version:
     ensure        => present,
     url           => $url,
-    digest_string => 'c4741339370bd5e825b2abb9f2cb5b40',
+    digest_string => '4317dbbd5d860e799571342deab9c9cc',
     src_target    => '/opt',
     target        => '/usr/share',
     extension     => 'zip',
