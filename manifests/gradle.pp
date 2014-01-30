@@ -5,7 +5,7 @@ class build::gradle {
 
   $version = 'gradle-1.10'
 
-  package{'unzip': ensure  => present }
+  ensure_resource('package', 'unzip', {'ensure' => 'present' })
 
   Exec {
     path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
