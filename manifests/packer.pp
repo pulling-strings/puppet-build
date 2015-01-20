@@ -1,6 +1,6 @@
 # Setting up packer.io
 class build::packer {
-  $version = '0.6.0'
+  $version = '0.7.5'
 
   ensure_resource('package', 'unzip', {'ensure' => 'present' })
 
@@ -13,9 +13,9 @@ class build::packer {
   archive { $version:
     ensure        => present,
     url           => $url,
-    digest_string => 'ffa4c7c92fb3abed9b35c5c1a6d9c1fe',
+    digest_string => 'f343d709b84db494e8d6ec38259aa4a6',
     src_target    => '/opt',
-    target        => "/usr/share/packer/",
+    target        => '/usr/share/packer/',
     extension     => 'zip',
     require       => Package['unzip'],
   } ->
