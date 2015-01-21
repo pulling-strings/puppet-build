@@ -8,7 +8,7 @@ class build::packer {
     path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  $url = "https://dl.bintray.com/mitchellh/packer/${$version}_linux_amd64.zip"
+  $url = "https://dl.bintray.com/mitchellh/packer/packer_${$version}_linux_amd64.zip"
 
   archive { $version:
     ensure        => present,
