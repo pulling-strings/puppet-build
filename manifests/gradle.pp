@@ -1,9 +1,7 @@
-# Class: gradle
-#
-#
+# Setting up gradle
 class build::gradle {
 
-  $version = 'gradle-1.10'
+  $version = 'gradle-2.2.1'
 
   ensure_resource('package', 'unzip', {'ensure' => 'present' })
 
@@ -11,16 +9,16 @@ class build::gradle {
     path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  $url = "http://downloads.gradle.org/distributions/${version}-bin.zip"
+  $url = "https://services.gradle.org/distributions/${version}-bin.zip"
 
   archive { $version:
-    ensure        => present,
-    url           => $url,
-    digest_string => '5594e5bc7f088683c1e90f99aa49f5fc',
-    src_target    => '/opt',
-    target        => '/usr/share',
-    extension     => 'zip',
-    require       => Package['unzip'],
+    ensure           => present,
+    url              => $url,
+    digest_string    => 'd38677bceaecb2eb225d76a3e8afbdcf',
+    target           => '/usr/share',
+    extension        => 'zip',
+    require          => Package['unzip'],
+    follow_redirects => true
   }
 
   file { '/usr/share/gradle':
@@ -32,11 +30,11 @@ class build::gradle {
   }
 
   file { '/etc/profile.d/gradle.sh':
-    ensure=> file,
-    mode  => '0644',
-    source=> 'puppet:///modules/build/gradle.sh',
-    owner => root,
-    group => root,
+    ensure => file,
+    mode   => '0644',
+    source => 'puppet:///modules/build/gradle.sh',
+    owner  => root,
+    group  => root,
   }
 
 }
