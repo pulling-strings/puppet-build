@@ -12,13 +12,13 @@ class build::gradle {
   $url = "https://services.gradle.org/distributions/${version}-bin.zip"
 
   archive { $version:
-    ensure           => present,
-    url              => $url,
-    digest_string    => 'd38677bceaecb2eb225d76a3e8afbdcf',
-    target           => '/usr/share',
-    extension        => 'zip',
-    require          => Package['unzip'],
-    follow_redirects => true
+    ensure          => present,
+    url             => $url,
+    digest_string   => 'd38677bceaecb2eb225d76a3e8afbdcf',
+    target          => '/usr/share',
+    extension       => 'zip',
+    require         => Package['unzip'],
+    allow_redirects => true
   }
 
   file { '/usr/share/gradle':
