@@ -1,13 +1,22 @@
 # setting up sbt
 class build::sbt {
-  apt::source { 'sbt':
-    location    => 'http://dl.bintray.com/sbt/debian',
-    release     => '',
-    include_src => false,
-    repos       => '/',
+
+  $url  = 'http://dl.bintray.com/sbt/debian'
+  $version = '0.13.7'
+
+  $deb  = "sbt-${version}.deb"
+
+  exec{'download vagrant deb':
+    command => "wget --max-redirect=1 -P /tmp ${url}/${deb}",
+    user    => 'root',
+    path    => ['/usr/bin','/bin'],
+    unless  => 'test -f /usr/bin/sbt'
   } ->
 
   package{'sbt':
-    ensure  => present
+    source   => "/tmp/${deb}",
+    provider => dpkg
   }
+
+
 }
