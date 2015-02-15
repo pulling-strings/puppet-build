@@ -23,7 +23,7 @@ class build::gradle {
 
   file { '/usr/share/gradle':
     ensure  => link,
-    target  => "/usr/share/${version}",
+    target  => "/usr/share/${version}/${version}",
     owner   => root,
     group   => root,
     require => Archive[$version]
