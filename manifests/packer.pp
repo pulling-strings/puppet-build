@@ -8,14 +8,14 @@ class build::packer {
     path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
   }
 
-  $url = "https://dl.bintray.com/mitchellh/packer/${$version}_linux_amd64.zip"
+  $url = "https://dl.bintray.com/mitchellh/packer/packer_${$version}_linux_amd64.zip"
 
   archive { $version:
     ensure        => present,
     url           => $url,
     digest_string => '21d75c05e692e53114fccc3639942a74',
     src_target    => '/opt',
-    target        => "/usr/share/packer/",
+    target        => '/usr/share/packer/',
     extension     => 'zip',
     require       => Package['unzip'],
   } ->
