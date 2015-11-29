@@ -1,7 +1,7 @@
 # Setting up gradle
 class build::gradle {
 
-  $version = 'gradle-2.3.0'
+  $version = 'gradle-2.6'
 
   ensure_resource('package', 'unzip', {'ensure' => 'present' })
 
@@ -14,7 +14,7 @@ class build::gradle {
   archive { $version:
     ensure           => present,
     url              => $url,
-    digest_string    => '8adc26fe7ee5325b9cff735a12a79044',
+    digest_string    => '88a116b028e4749c9d77e514904755a9',
     target           => '/usr/share',
     extension        => 'zip',
     require          => Package['unzip'],
@@ -23,7 +23,7 @@ class build::gradle {
 
   file { '/usr/share/gradle':
     ensure  => link,
-    target  => "/usr/share/${version}/${version}",
+    target  => "/usr/share/${version}",
     owner   => root,
     group   => root,
     require => Archive[$version]
