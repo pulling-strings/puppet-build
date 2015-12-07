@@ -18,7 +18,7 @@ class build::gradle {
     target           => '/usr/share',
     extension        => 'zip',
     require          => Package['unzip'],
-    follow_redirects => true
+    allow_redirects => true
   }
 
   file { '/usr/share/gradle':
