@@ -1,5 +1,5 @@
 # installing maven
-class build::maven($version='2.2.1', $md5='83fc9b8e7fbcd89fccfdee0e50c54bab') {
+class build::maven($version='3.0.5', $md5='20b830ab3aa3fec221e85f9dd1fcbedd') {
 
   ensure_resource('package', 'unzip', {ensure  => present })
 
@@ -20,9 +20,9 @@ class build::maven($version='2.2.1', $md5='83fc9b8e7fbcd89fccfdee0e50c54bab') {
   } ->
 
   file { '/usr/share/maven':
-    ensure  => link,
-    target  => "/usr/share/apache-maven-${version}",
-    owner   => root,
+    ensure => link,
+    target => "/usr/share/${version}/apache-maven-${version}",
+    owner  => root,
   } ->
 
   file{'/usr/bin/mvn':
