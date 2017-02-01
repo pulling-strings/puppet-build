@@ -2,7 +2,7 @@
 # This module manages boot see https://github.com/boot-clj/boot
 class build::boot {
 
-  $url = ''
+  $url = 'https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh'
 
   exec{'wget boot':
     command => "wget ${url} -O /usr/local/bin/boot",
