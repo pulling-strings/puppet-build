@@ -1,0 +1,33 @@
+{
+  "name": "puppet-build",
+  "version": "0.2.0",
+  "author": "Ronen Narkis",
+  "summary": "Setting up build utilities ranging from Packer to Lein and Gradle",
+  "license": "Apache-2.0",
+  "source": "https://github.com/pulling-strings/puppet-build",
+  "project_page": "https://github.com/pulling-strings/puppet-build",
+  "issues_url": "https://github.com/pulling-strings/puppet-build",
+  "dependencies": [
+  ],
+  "data_provider": null,
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "16.04"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "9.0"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.0.0"
+    }
+  ]
+}
