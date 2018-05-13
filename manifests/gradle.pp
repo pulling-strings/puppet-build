@@ -1,23 +1,19 @@
 # Setting up gradle
 class build::gradle {
 
-  $version = 'gradle-2.6'
+  $version = 'gradle-4.7'
 
   ensure_resource('package', 'unzip', {'ensure' => 'present' })
-
-  Exec {
-    path => '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-  }
 
   $url = "https://services.gradle.org/distributions/${version}-bin.zip"
 
   archive { $version:
-    ensure           => present,
-    url              => $url,
-    digest_string    => '88a116b028e4749c9d77e514904755a9',
-    target           => '/usr/share',
-    extension        => 'zip',
-    require          => Package['unzip'],
+    ensure          => present,
+    url             => $url,
+    digest_string   => '3e5af867778cd0a8e00e62257f426e09',
+    target          => '/usr/share',
+    extension       => 'zip',
+    require         => Package['unzip'],
     allow_redirects => true
   }
 
@@ -27,6 +23,11 @@ class build::gradle {
     owner   => root,
     group   => root,
     require => Archive[$version]
+  }
+
+  file{'/usr/bin/gradle':
+    ensure => link,
+    target => "/usr/share/gradle/${version}/bin/gradle"
   }
 
   file { '/etc/profile.d/gradle.sh':
